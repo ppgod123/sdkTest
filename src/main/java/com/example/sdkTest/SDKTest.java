@@ -71,15 +71,20 @@ public class SDKTest {
 //    private static String appSecret = "cuPcoFzVmoUHZY2WQhNgJdeGwxMOoj55";
 
 //    基线 - TEST
-//    private static String hostUrl = "http://10.145.11.63:30080";
-//    private static String appCode = "szzjs";
-//    private static String appKey = "awNxXDbeisco";
-//    private static String appSecret = "468iDKf6Gq6u6Wwnwit3iH5QI6XbyrqD";
-
-    private static String hostUrl = "https://kfy.idw.jinhua.gov.cn";      //出口api - 请求地址 （ip+端口） 金华项目固定用https://kfy.idw.jinhua.gov.cn
-    private static String appCode = "xianliu";          // 应用关系 - 应用代码 （出口api配置的 对应的 应用关系）
-    private static String appKey = "gFvuKZTmTaIH";      // 应用关系 - AppKey （出口api 配置的对应的 应用关系）
-    private static String appSecret = "tH5LMfeR5JWiTpFXBppbybLbbDBxfCp2";
+    private static String hostUrl = "http://10.145.11.63:30080";
+    private static String appCode = "b88489eaa4184a4c88e7cadba0964fb4";//关联应用appCode
+    private static String appKey = "CUUwpk4z9qGB";                     //关联应用appKey
+    private static String appSecret = "yZHTa4c6YfugwHHtp7hhWFsXxThGTt5s";//关联应用appSecret
+//    台州开放域 - TEST
+//    private static String hostUrl = "http://39.171.75.4";
+//    private static String appCode = "cszh";//关联应用appCode
+//    private static String appKey = "mQRwulotcFgA";                     //关联应用appKey
+//    private static String appSecret = "QEirq0iE0NmEyZDXjLnpTTStzFY5LCEc";//关联应用appSecret
+//  金华开放域-test
+//    private static String hostUrl = "https://kfy.idw.jinhua.gov.cn";      //出口api - 请求地址 （ip+端口） 金华项目固定用https://kfy.idw.jinhua.gov.cn
+//    private static String appCode = "xianliu";          // 应用关系 - 应用代码 （出口api配置的 对应的 应用关系）
+//    private static String appKey = "gFvuKZTmTaIH";      // 应用关系 - AppKey （出口api 配置的对应的 应用关系）
+//    private static String appSecret = "tH5LMfeR5JWiTpFXBppbybLbbDBxfCp2";
 
 //    private static String appCode = "ddd";
 //    private static String appKey = "kdIldDYNZpCj";
@@ -91,16 +96,16 @@ public class SDKTest {
     private static DfhHttpClient dfhHttpClient = new DfhHttpClient();
 
     public static void main(String[] args) throws Exception {
-
-
-        数据授权1();
-
+        for (int i=0;i<5;i++) {
+            //测试环境_企业数据在线导入测试();
+            数据服务测试();
+        }
     }
-    public static void 开发环境_企业数据在线导入测试() {
-        String hostUrl = "http://10.145.10.113:30080";
-        String appKey = "awNxXDbeiscz";
-        String appSecret = "468iDKf6Gq6u6Wwnwit3iH5QI6XbyrqD";
-        String appCode = "ddwswqqw";
+    public static void 测试环境_企业数据在线导入测试() {
+        String hostUrl = "http://10.145.11.63:30080";
+        String appKey = "fDNv7xs34ZEh";   //自有数据appKey
+        String appSecret = "Up83M2879NnwKB4cu6AXWL98iAfR4czL"; //自有数据appSecret
+        String appCode = "9"; //随便填写
 
         DfhOpClient dfhOpClient = DfhOpClient.getInstance(hostUrl, appCode, appKey, appSecret);
         Map<String, String> headerParamMap = new HashMap<>();
@@ -108,14 +113,14 @@ public class SDKTest {
         List<Map<String, String>> rows = new ArrayList<>();
         Map<String, String> row1 = new HashMap<>();
         row1.put("id", "1");
-        row1.put("name", "5");
+        row1.put("name", "Andy112");
         Map<String, String> row2 = new HashMap<>();
-        row2.put("id", "7");
-        row2.put("name", "5");
+        row2.put("id", "2");
+        row2.put("name", "white132");
         rows.add(row1);
         rows.add(row2);
-        bodyParamMap.put("applyId", "79");
-        bodyParamMap.put("tableName", "test_apifacade");
+        bodyParamMap.put("applyId", "127");
+        bodyParamMap.put("tableName", "fa_table001");
         bodyParamMap.put("rows", JSONArray.toJSONString(rows));
 
         DfhOpResponse<String> result = dfhOpClient.executePostJson(
@@ -183,17 +188,18 @@ public class SDKTest {
         Map<String, String> headerParamMap = new HashMap<>();
         Map<String, String> bodyParamMap = new HashMap<String, String>();
         Map<String, Object> paramsMap = new HashMap<String, Object>();
+        headerParamMap.put("test_test","test_test");
 
-        bodyParamMap.put("appId", "67");
-        bodyParamMap.put("apiCode", "4f7e0521-e805-49dc-8502-9448d110da0d");
+        bodyParamMap.put("appId", "1");
+        bodyParamMap.put("apiCode", "eccdbf8d-9ac6-4a33-9c2c-ed9a5bce19c8");
 
-        paramsMap.put("id", "136");
+        paramsMap.put("id", "1030");
 //        paramsMap.put("code", "sjff");
 //        paramsMap.put("name", "数据服务接口");
         bodyParamMap.put("requestParams", JSON.toJSONString(paramsMap));
 
         DfhOpResponse<String> result = dfhOpClient.executePostJson(
-                "/yanshou", headerParamMap, null, bodyParamMap);
+                "/gateway/0002", headerParamMap, null, bodyParamMap);
         System.out.println(result);
         System.out.println("接口发送请求成功！！！");
     }
