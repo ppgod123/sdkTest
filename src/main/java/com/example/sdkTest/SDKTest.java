@@ -71,20 +71,22 @@ public class SDKTest {
 //    private static String appSecret = "cuPcoFzVmoUHZY2WQhNgJdeGwxMOoj55";
 
 //    基线 - TEST
-    private static String hostUrl = "http://10.145.11.63:30080";
-    private static String appCode = "b88489eaa4184a4c88e7cadba0964fb4";//关联应用appCode
-    private static String appKey = "CUUwpk4z9qGB";                     //关联应用appKey
-    private static String appSecret = "yZHTa4c6YfugwHHtp7hhWFsXxThGTt5s";//关联应用appSecret
+//    private static String hostUrl = "http://10.145.11.63:30080";
+//    private static String appCode = "b88489eaa4184a4c88e7cadba0964fb4";//关联应用appCode
+//    private static String appKey = "CUUwpk4z9qGB";                     //关联应用appKey
+//    private static String appSecret = "yZHTa4c6YfugwHHtp7hhWFsXxThGTt5s";//关联应用appSecret
+
 //    台州开放域 - TEST
-//    private static String hostUrl = "http://39.171.75.4";
-//    private static String appCode = "cszh";//关联应用appCode
-//    private static String appKey = "mQRwulotcFgA";                     //关联应用appKey
-//    private static String appSecret = "QEirq0iE0NmEyZDXjLnpTTStzFY5LCEc";//关联应用appSecret
+    //private static String hostUrl = "http://dfh-gateway-portal.tz-dev.kfy.xip.io";
+//    private static String hostUrl = "http://kfy-api.etz.gov.cn";
+//    private static String appCode = "999";//关联应用appCode
+//    private static String appKey = "DBbuNthwJTFp";                     //关联应用appKey
+//    private static String appSecret = "vNBGEHNDwMmzHifY3S2sveJpOTlMQ74X";//关联应用appSecret
 //  金华开放域-test
-//    private static String hostUrl = "https://kfy.idw.jinhua.gov.cn";      //出口api - 请求地址 （ip+端口） 金华项目固定用https://kfy.idw.jinhua.gov.cn
-//    private static String appCode = "xianliu";          // 应用关系 - 应用代码 （出口api配置的 对应的 应用关系）
-//    private static String appKey = "gFvuKZTmTaIH";      // 应用关系 - AppKey （出口api 配置的对应的 应用关系）
-//    private static String appSecret = "tH5LMfeR5JWiTpFXBppbybLbbDBxfCp2";
+    private static String hostUrl = "https://kfy.idw.jinhua.gov.cn";      //出口api - 请求地址 （ip+端口） 金华项目固定用https://kfy.idw.jinhua.gov.cn
+    private static String appCode = "dddddd";          // 应用关系 - 应用代码 （出口api配置的 对应的 应用关系）
+    private static String appKey = "aCuDlwWIEuRq";      // 应用关系 - AppKey （出口api 配置的对应的 应用关系）
+    private static String appSecret = "ibMXDJID0sDeLkqsmbLyb4hKDm9vTvyY";
 
 //    private static String appCode = "ddd";
 //    private static String appKey = "kdIldDYNZpCj";
@@ -96,9 +98,10 @@ public class SDKTest {
     private static DfhHttpClient dfhHttpClient = new DfhHttpClient();
 
     public static void main(String[] args) throws Exception {
-        for (int i=0;i<5;i++) {
+        for (int i=0;i<8;i++) {
             //测试环境_企业数据在线导入测试();
-            数据服务测试();
+            //数据服务测试();
+            数据服务测试金华();
         }
     }
     public static void 测试环境_企业数据在线导入测试() {
@@ -184,22 +187,21 @@ public class SDKTest {
         System.out.println(result);
     }
 
-    private static void 数据服务测试() {
+    private static void 数据服务测试金华() {
         Map<String, String> headerParamMap = new HashMap<>();
         Map<String, String> bodyParamMap = new HashMap<String, String>();
         Map<String, Object> paramsMap = new HashMap<String, Object>();
-        headerParamMap.put("test_test","test_test");
 
-        bodyParamMap.put("appId", "1");
-        bodyParamMap.put("apiCode", "eccdbf8d-9ac6-4a33-9c2c-ed9a5bce19c8");
+        bodyParamMap.put("appId", "288");
+        bodyParamMap.put("apiCode", "a34c2101-89b6-4dd2-810b-5d711d2ec8ce");
 
-        paramsMap.put("id", "1030");
+        paramsMap.put("id", "13");
 //        paramsMap.put("code", "sjff");
 //        paramsMap.put("name", "数据服务接口");
         bodyParamMap.put("requestParams", JSON.toJSONString(paramsMap));
 
         DfhOpResponse<String> result = dfhOpClient.executePostJson(
-                "/gateway/0002", headerParamMap, null, bodyParamMap);
+                "/gateway/szzj/7f60e334-03df-42e5-adf0-c11b4293dc60", null, null, bodyParamMap);
         System.out.println(result);
         System.out.println("接口发送请求成功！！！");
     }
